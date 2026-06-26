@@ -6,6 +6,6 @@
 		<Version>1.0.2</Version>
 		<Description>TBA</Description>
 	</Information>
-	<Package>Souru.VitalTarget.Main</Package>
+	<Package>VitalTarget.Main</Package>
 	<Configuration Apartment="VitalTarget" />
 </Plugin>

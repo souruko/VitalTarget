@@ -7,7 +7,7 @@
   <InfoUrl>https://www.lotrointerface.com/downloads/info1078-VitalTarget.html</InfoUrl>
   <DownloadUrl>https://www.lotrointerface.com/downloads/download1078-VitalTarget</DownloadUrl>
   <Descriptors>
-    <descriptor>Souru\VitalTarget.plugin</descriptor>
+    <descriptor>VitalTarget.plugin</descriptor>
   </Descriptors>
   <Dependencies />
 </PluginConfig>

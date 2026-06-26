@@ -43,13 +43,19 @@ function save()
 	
 	saveFile.font = FONT
 	saveFile.width = WIDTH
-	saveFile.heigth = HEIGHT
+	saveFile.height = HEIGHT
 	saveFile.left = LEFT
 	saveFile.top = TOP
 	saveFile.ttkspace = TTKSPACE
 	saveFile.show_ttkspace = SHOW_TTKSPACE
-	saveFile.moraleColor = MORALECOLOR
-	saveFile.bubbleColor = BUBBLECOLOR
+	saveFile.moraleColorR = MORALECOLOR.R
+	saveFile.moraleColorG = MORALECOLOR.G
+	saveFile.moraleColorB = MORALECOLOR.B
+	saveFile.moraleColorA = MORALECOLOR.A
+	saveFile.bubbleColorR = BUBBLECOLOR.R
+	saveFile.bubbleColorG = BUBBLECOLOR.G
+	saveFile.bubbleColorB = BUBBLECOLOR.B
+	saveFile.bubbleColorA = BUBBLECOLOR.A
 	
 	
 	Turbine.PluginData.Save(Turbine.DataScope.Character, "vitalTargetSaveFile", saveFile);
@@ -64,33 +70,43 @@ function loadSaveFile()
 		local saveFile = Turbine.PluginData.Load(Turbine.DataScope.Character, "vitalTargetSaveFile")
 	
 		WIDTH 	= saveFile.width
-		HEIGHT	= saveFile.heigth
+		HEIGHT	= saveFile.height or HEIGHT
 		LEFT 	= saveFile.left
 		TOP 	= saveFile.top
 		TTKSPACE= saveFile.ttkspace
-	
-		if 	saveFile.show_ttkspace ~= nil then
 
-			SHOW_TTKSPACE = saveFile.show_ttkspace 
+		if saveFile.show_ttkspace ~= nil then
+			SHOW_TTKSPACE = saveFile.show_ttkspace
+		end
 
+		if saveFile.moraleColorR ~= nil then
+			MORALECOLOR = Turbine.UI.Color(saveFile.moraleColorA, saveFile.moraleColorR, saveFile.moraleColorG, saveFile.moraleColorB)
+		end
+		if saveFile.bubbleColorR ~= nil then
+			BUBBLECOLOR = Turbine.UI.Color(saveFile.bubbleColorA, saveFile.bubbleColorR, saveFile.bubbleColorG, saveFile.bubbleColorB)
 		end
 
 	else
-	
+
 		if Turbine.PluginData.Load(Turbine.DataScope.Account, "vitalTargetSaveFileBackup") ~= nil then
-		
+
 			local saveFile = Turbine.PluginData.Load(Turbine.DataScope.Account, "vitalTargetSaveFileBackup")
-		
+
 			WIDTH 	= saveFile.width
-			HEIGHT	= saveFile.heigth
+			HEIGHT	= saveFile.height or HEIGHT
 			LEFT 	= saveFile.left
 			TOP 	= saveFile.top
 			TTKSPACE= saveFile.ttkspace
 
-			if 	saveFile.show_ttkspace ~= nil then
+			if saveFile.show_ttkspace ~= nil then
+				SHOW_TTKSPACE = saveFile.show_ttkspace
+			end
 
-				SHOW_TTKSPACE = saveFile.show_ttkspace 
-	
+			if saveFile.moraleColorR ~= nil then
+				MORALECOLOR = Turbine.UI.Color(saveFile.moraleColorA, saveFile.moraleColorR, saveFile.moraleColorG, saveFile.moraleColorB)
+			end
+			if saveFile.bubbleColorR ~= nil then
+				BUBBLECOLOR = Turbine.UI.Color(saveFile.bubbleColorA, saveFile.bubbleColorR, saveFile.bubbleColorG, saveFile.bubbleColorB)
 			end
 		
 		end
@@ -123,5 +139,3 @@ end
 plugin.GetOptionsPanel = function( self )
   return optionsPanel
 end
-
-save()

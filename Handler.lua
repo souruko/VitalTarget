@@ -31,15 +31,6 @@ function RemoveCallback(object, event, callback)
 end
 
 -- ------------------------------------------------------------------------
--- Target Change Handler
--- ------------------------------------------------------------------------
-function TargetChangeHandler(sender, args)
-    for key, frame in pairs (TargetFrames) do
-        TargetFrame.UpdateTarget(frame)
-    end
-end
-
--- ------------------------------------------------------------------------
 -- Morale Change Handler
 -- ------------------------------------------------------------------------
 function MoraleChangedHandler(sender, args)
@@ -69,24 +60,28 @@ function MoraleChangedHandler(sender, args)
 
     if SHOW_TTKSPACE then
 
-        local zeit = Turbine.Engine:GetGameTime()
-        local timetokill = TargetMorale*(zeit-CurrentFrame.STARTTIME)/(CurrentFrame.STARTMORALE-TargetMorale)	--TargetMorale/((CurrentFrame.STARTMORALE-TargetMorale)/(zeit-CurrentFrame.STARTTIME))
-        
-        if timetokill > 0 and timetokill < 6000 then
-            local minu = math.floor(timetokill/60)
-            local seco = math.floor(timetokill % 60)
-            
-            local dps = math.floor((CurrentFrame.STARTMORALE-TargetMorale)/(zeit-CurrentFrame.STARTTIME)/1000)
-            CurrentFrame.raidDPSLabel:SetText(dps.."k")
-            CurrentFrame.ttkLabel:SetText(string.format("%02d:%02d",  minu, seco))
+        local elapsed = Turbine.Engine:GetGameTime()
+
+        if CurrentFrame.STARTMORALE ~= TargetMorale then
+            local timetokill = TargetMorale*(elapsed-CurrentFrame.STARTTIME)/(CurrentFrame.STARTMORALE-TargetMorale)
+
+            if timetokill > 0 and timetokill < 6000 then
+                local minu = math.floor(timetokill/60)
+                local seco = math.floor(timetokill % 60)
+
+                local dps = math.floor((CurrentFrame.STARTMORALE-TargetMorale)/(elapsed-CurrentFrame.STARTTIME)/1000)
+                CurrentFrame.raidDPSLabel:SetText(dps.."k")
+                CurrentFrame.ttkLabel:SetText(string.format("%02d:%02d",  minu, seco))
+            else
+                CurrentFrame.ttkLabel:SetText("--")
+                CurrentFrame.raidDPSLabel:SetText("--")
+            end
         else
             CurrentFrame.ttkLabel:SetText("--")
             CurrentFrame.raidDPSLabel:SetText("--")
         end
 
     end
-	
-    if DEBUG_ENABLED then Turbine.Shell.WriteLine("Exiting EffectsChangedHandler") end
 end
 
 function TempMoraleChangedHandler(sender, args)
