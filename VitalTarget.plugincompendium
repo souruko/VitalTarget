@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PluginConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Id>1078</Id>
+  <Name>Vital Target</Name>
+  <Version>1.0.2</Version>
+  <Author>souru</Author>
+  <InfoUrl>https://www.lotrointerface.com/downloads/info1078-VitalTarget.html</InfoUrl>
+  <DownloadUrl>https://www.lotrointerface.com/downloads/download1078-VitalTarget</DownloadUrl>
+  <Descriptors>
+    <descriptor>Souru\VitalTarget.plugin</descriptor>
+  </Descriptors>
+  <Dependencies />
+</PluginConfig>

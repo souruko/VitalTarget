@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<Plugin>
+	<Information>
+		<Name>VitalTarget</Name>
+		<Author>Souru</Author>
+		<Version>1.0.2</Version>
+		<Description>TBA</Description>
+	</Information>
+	<Package>Souru.VitalTarget.Main</Package>
+	<Configuration Apartment="VitalTarget" />
+</Plugin>
