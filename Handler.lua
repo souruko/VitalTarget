@@ -56,7 +56,11 @@ function MoraleChangedHandler(sender, args)
 	
     local BarSize = math.floor(TargetMorale/TargetMaxMorale * ACTUALWIDTH)
     CurrentFrame.moraleBar:SetWidth(BarSize)
-
+    if REVERSE_BAR then
+        CurrentFrame.moraleBar:SetLeft(ACTUALWIDTH - BarSize)
+    else
+        CurrentFrame.moraleBar:SetLeft(0)
+    end
 
     if SHOW_TTKSPACE then
 
@@ -108,15 +112,30 @@ function TempMoraleChangedHandler(sender, args)
 		ACTUALWIDTH = math.floor(WIDTH*(1-(TargetMaxTempMorale/TargetMaxMorale)))
 		
 		
-		CurrentFrame.moraleBar:SetWidth(TargetMorale/TargetMaxMorale * ACTUALWIDTH)
+		local mBarWidth = TargetMorale/TargetMaxMorale * ACTUALWIDTH
+		local bBarWidth = (WIDTH-ACTUALWIDTH)*(TargetTempMorale/TargetMaxTempMorale)
+		if REVERSE_BAR then
+			CurrentFrame.moraleBar:SetWidth(mBarWidth)
+			CurrentFrame.moraleBar:SetLeft(ACTUALWIDTH - mBarWidth)
+			CurrentFrame.bubbleBar:SetLeft(0)
+			CurrentFrame.bubbleBar:SetWidth(bBarWidth)
+		else
+			CurrentFrame.moraleBar:SetWidth(mBarWidth)
+			CurrentFrame.moraleBar:SetLeft(0)
+			CurrentFrame.bubbleBar:SetLeft(ACTUALWIDTH)
+			CurrentFrame.bubbleBar:SetWidth(bBarWidth)
+		end
 		CurrentFrame.bubbleBar:SetVisible(true)
-		CurrentFrame.bubbleBar:SetLeft(ACTUALWIDTH)
-		CurrentFrame.bubbleBar:SetWidth((WIDTH-ACTUALWIDTH)*(TargetTempMorale/TargetMaxTempMorale))
 		
 	else
 		local BarSize = math.floor(TargetMorale/TargetMaxMorale * ACTUALWIDTH)
 		CurrentFrame.moraleBar:SetWidth(BarSize)
-	
+		if REVERSE_BAR then
+			CurrentFrame.moraleBar:SetLeft(ACTUALWIDTH - BarSize)
+		else
+			CurrentFrame.moraleBar:SetLeft(0)
+		end
+
 		CurrentFrame.bubbleBar:SetVisible(false)
 		CurrentFrame.percentLabel:SetHeight(HEIGHT+4)
 		CurrentFrame.bubbleValue:SetText("")

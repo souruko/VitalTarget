@@ -3,7 +3,7 @@
 	<Information>
 		<Name>VitalTarget</Name>
 		<Author>Souru</Author>
-		<Version>1.0.2</Version>
+		<Version>1.0.3</Version>
 		<Description>TBA</Description>
 	</Information>
 	<Package>VitalTarget.Main</Package>

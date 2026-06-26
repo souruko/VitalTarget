@@ -18,6 +18,7 @@ TOP 	= 500
 SHOW_TTKSPACE = false
 TTKSPACE= 54
 MOVE    = false
+REVERSE_BAR = false
 MORALECOLOR = Turbine.UI.Color.Orange
 BUBBLECOLOR = Turbine.UI.Color(0.1,0.6,1.0)
 SETTINGSFONT = Turbine.UI.Lotro.Font.BookAntiqua20
@@ -48,6 +49,7 @@ function save()
 	saveFile.top = TOP
 	saveFile.ttkspace = TTKSPACE
 	saveFile.show_ttkspace = SHOW_TTKSPACE
+	saveFile.reverse_bar = REVERSE_BAR
 	saveFile.moraleColorR = MORALECOLOR.R
 	saveFile.moraleColorG = MORALECOLOR.G
 	saveFile.moraleColorB = MORALECOLOR.B
@@ -79,6 +81,10 @@ function loadSaveFile()
 			SHOW_TTKSPACE = saveFile.show_ttkspace
 		end
 
+		if saveFile.reverse_bar ~= nil then
+			REVERSE_BAR = saveFile.reverse_bar
+		end
+
 		if saveFile.moraleColorR ~= nil then
 			MORALECOLOR = Turbine.UI.Color(saveFile.moraleColorA, saveFile.moraleColorR, saveFile.moraleColorG, saveFile.moraleColorB)
 		end
@@ -100,6 +106,10 @@ function loadSaveFile()
 
 			if saveFile.show_ttkspace ~= nil then
 				SHOW_TTKSPACE = saveFile.show_ttkspace
+			end
+
+			if saveFile.reverse_bar ~= nil then
+				REVERSE_BAR = saveFile.reverse_bar
 			end
 
 			if saveFile.moraleColorR ~= nil then

@@ -2,6 +2,11 @@
 
 All notable changes to VitalTarget are documented here.
 
+## [1.0.3] — 2026-06-27
+
+### Added
+- "Reverse bar direction" setting in the WINDOW section of the options panel; when enabled, the morale bar fills from the right and shrinks from the left, with the bubble bar appearing on the left side
+
 ## [1.0.2] — 2026-06-27
 
 ### Added

@@ -63,7 +63,7 @@ function Options:BuildMoveControl()
 
 	local temp = Turbine.UI.Control()
 	temp:SetParent(self)
-	temp:SetSize(600, 65)
+	temp:SetSize(600, 100)
 
 	local section = Turbine.UI.Label()
 	section:SetParent(temp)
@@ -90,6 +90,24 @@ function Options:BuildMoveControl()
 			MOVE = false
 			self.OBJECT.moveControl:SetMouseVisible(false)
 		end
+	end
+
+	local checkBox2 = Turbine.UI.Lotro.CheckBox()
+	checkBox2:SetParent(temp)
+	checkBox2:SetPosition(30, 52)
+	checkBox2:SetWidth(temp:GetWidth()-30)
+	checkBox2:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleLeft)
+	checkBox2:SetFont(SETTINGSFONT)
+	checkBox2:SetText(" Reverse bar direction")
+	checkBox2:SetChecked(REVERSE_BAR)
+
+	checkBox2.CheckedChanged = function()
+		REVERSE_BAR = checkBox2:IsChecked()
+		MoraleChangedHandler()
+		if OBJECT.TARGET and OBJECT.TARGET:GetTemporaryMorale() > 0 then
+			TempMoraleChangedHandler()
+		end
+		save()
 	end
 
 	return temp
@@ -356,6 +374,7 @@ function Options:BuildResetControl()
 		TOP = 500
 		TTKSPACE = 54
 		SHOW_TTKSPACE = false
+		REVERSE_BAR = false
 		MORALECOLOR = Turbine.UI.Color(1.0, 0.5, 0.0)
 		BUBBLECOLOR = Turbine.UI.Color(0.1, 0.6, 1.0)
 		self.OBJECT.moraleBar:SetBackColor(MORALECOLOR)
